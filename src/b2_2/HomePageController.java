@@ -28,7 +28,7 @@ public class HomePageController {
 	public void initialize() {
 		caculateGroups();
 		allocateStudentInGroup();
-		outputTest();
+		//outputFileFunction();	//Test
 	}
 	
 	public HomePageController() {
@@ -122,7 +122,7 @@ public class HomePageController {
 		
 	}
 	
-	public void outputTest() {
+	public void outputFileFunction() {
 		FileIO newFileIO = new FileIO();
 		newFileIO.outputCSV(dataPrepare);
 	}
