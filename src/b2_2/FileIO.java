@@ -57,7 +57,7 @@ public class FileIO {
 		}
 	}
 	
-	public void outputCSV() {
+	public void outputCSV(List<String> dataPrepare) {
 		String outputFile = "./testFiles/test_output.csv";	//Test code
 		boolean alreadyExists = new File(outputFile).exists();
 		
@@ -68,9 +68,20 @@ public class FileIO {
 			{
 				csvOutput.write("id");
 				csvOutput.write("name");
-				csvOutput.write("group_id");
+				csvOutput.write("groupid");
 				csvOutput.endRecord();
 			}
+			
+			for(String strings : dataPrepare) {
+				String[] split = strings.split(",");
+				
+				csvOutput.write(split[0]);
+				csvOutput.write(split[1]);
+				csvOutput.write(split[2]);
+				csvOutput.endRecord();
+			}
+			
+			csvOutput.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

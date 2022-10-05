@@ -15,6 +15,8 @@ public class HomePageController {
 	
 	List<String[]> studentList = new ArrayList<String[]>();
 	List<String[]> classList = new ArrayList<String[]>();
+	
+	List<String> dataPrepare = new ArrayList<String>();
 	int totalStudent = 0;
 	int minNumInGroup = 5; //Default Value MIN
 	int maxNumInGroup = 7; //Default Value MAX
@@ -26,6 +28,7 @@ public class HomePageController {
 	public void initialize() {
 		caculateGroups();
 		allocateStudentInGroup();
+		outputTest();
 	}
 	
 	public HomePageController() {
@@ -81,18 +84,18 @@ public class HomePageController {
 	
 	public void allocateStudentInGroup() {
 		//List<String[]> temporyGroupsList = new ArrayList<String[]>();
-		List<String> dataPrepare = new ArrayList<String>();
 		int nextGroupInitialRowID = 0;
-		int totalGroupNum = 1;
+		int totalGroupNum = 0;
 		
 		//MAX Number Groups
 		for (int i = 1; i <= intMaxNumberGroups; i++) {
-			groupDetail.getItems().add("Group: " + totalGroupNum);
+			//groupDetail.getItems().add("Group: " + totalGroupNum);
+			
 			totalGroupNum++;
 			for(int j = 1; j <= maxNumInGroup; j++) {
-				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0]);
+				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0] + "," + studentList.get(nextGroupInitialRowID)[1] + "," + "GROUP: " + totalGroupNum);
 				System.out.println(studentList.get(nextGroupInitialRowID)[0]);
-				groupDetail.getItems().add(studentList.get(nextGroupInitialRowID)[1]); //TO FXML
+				groupDetail.getItems().add(dataPrepare.get(nextGroupInitialRowID)); //TO FXML
 				nextGroupInitialRowID++;
 			}
 			//temporyGroupsList.add();
@@ -100,13 +103,14 @@ public class HomePageController {
 		
 		//MIN Number Groups
 		for (int l = 1; l <= intMinNumberGroups; l++) {
-			groupDetail.getItems().add("Group: " + totalGroupNum);
+			//groupDetail.getItems().add("Group: " + totalGroupNum);
 			totalGroupNum++;
 			for(int k = 1; k <= minNumInGroup; k++) {
-				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0]);
+				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0] + "," + studentList.get(nextGroupInitialRowID)[1] + "," + "GROUP " + totalGroupNum);
 				System.out.println(studentList.get(nextGroupInitialRowID)[0]);
-				groupDetail.getItems().add(studentList.get(nextGroupInitialRowID)[1]); //TO FXML
+				groupDetail.getItems().add(dataPrepare.get(nextGroupInitialRowID)); //TO FXML
 				nextGroupInitialRowID++;
+				
 			}
 	        
 			
@@ -116,5 +120,10 @@ public class HomePageController {
 			groupDetail.setItems(items);*/
 		}
 		
+	}
+	
+	public void outputTest() {
+		FileIO newFileIO = new FileIO();
+		newFileIO.outputCSV(dataPrepare);
 	}
 }
