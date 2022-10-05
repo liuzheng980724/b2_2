@@ -17,7 +17,9 @@ public class HomePageController {
 	@FXML
 	private ListView<String> groupDetail = new ListView<String>();
 	@FXML
-	private Button importButton;
+	private Button importButtonCSV;
+	@FXML
+	private Button importButtonXLSX;
 	@FXML
 	private Button exportButton;
 	@FXML
@@ -43,10 +45,9 @@ public class HomePageController {
 	}
 	
 	public HomePageController() {
-		/*FileIO newFileIO = new FileIO();
-		
+		//FileIO newFileIO = new FileIO();
 		//TEST
-		try {
+		/*try {
 			studentList = newFileIO.importCsv("./testFiles/test1.csv");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -130,7 +131,7 @@ public class HomePageController {
 	
 	public void importFileFunction(ActionEvent event) {
 		FileChooser newfileChooser = new FileChooser();
-		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Allow file format: ", "*.csv", "*.xlsx");
+		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Only CSV.", "*.csv");
 		newfileChooser.getExtensionFilters().add(extFilter);
 		File selectedFile = newfileChooser.showOpenDialog(null);
 		
@@ -140,6 +141,36 @@ public class HomePageController {
         	
         	try {
     			studentList = newFileIO.importCsv(filepath);
+    		} catch (Exception e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+        	
+        	reloadList();
+        	caculateGroups();
+    		allocateStudentInGroup();
+    		exportButton.setDisable(false);
+    		sysMessage.setText("Done! Check the list below.");
+        }
+        
+	}
+	
+	public void importFileFunctionXlsx(ActionEvent event) {
+		FileChooser newfileChooser = new FileChooser();
+		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Only XLSX.", "*.xlsx");
+		newfileChooser.getExtensionFilters().add(extFilter);
+		File selectedFile = newfileChooser.showOpenDialog(null);
+		
+        if(selectedFile != null) {
+        	String filepath = selectedFile.getAbsolutePath();
+        	FileIO newFileIO = new FileIO();
+        	
+        	try {
+    			
+        		if(newFileIO.sheetPrepare(filepath)) {
+        			studentList = newFileIO.importCsv("./testFiles/temporaryFile.csv");
+        		}
+        		
     		} catch (Exception e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();

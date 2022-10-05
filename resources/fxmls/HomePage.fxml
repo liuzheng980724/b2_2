@@ -48,9 +48,10 @@
    <top>
       <Pane prefHeight="40.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="importButton" layoutX="102.0" layoutY="7.0" mnemonicParsing="false" onAction="#importFileFunction" text="Import" />
-            <Button fx:id="exportButton" disable="true" layoutX="374.0" layoutY="7.0" mnemonicParsing="false" onAction="#outputFileFunction" text="Export" />
-            <Button fx:id="settingsButton" disable="true" layoutX="616.0" layoutY="7.0" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="importButtonCSV" layoutX="65.0" layoutY="7.0" mnemonicParsing="false" onAction="#importFileFunction" prefHeight="26.0" prefWidth="126.0" text="Import (From CSV)" />
+            <Button fx:id="exportButton" disable="true" layoutX="372.0" layoutY="7.0" mnemonicParsing="false" onAction="#outputFileFunction" prefHeight="26.0" prefWidth="80.0" text="Export" />
+            <Button fx:id="settingsButton" disable="true" layoutX="653.0" layoutY="7.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="80.0" text="Settings" />
+            <Button fx:id="importButtonXLSX" layoutX="217.0" layoutY="7.0" mnemonicParsing="false" onAction="#importFileFunctionXlsx" prefHeight="26.0" prefWidth="126.0" text="Import (From XLSX)" />
          </children>
       </Pane>
    </top>

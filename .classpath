@@ -13,5 +13,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/javacsv2.1/javacsv.jar"/>
+	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/supportXlsx/commons-collections4-4.1.jar"/>
+	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/supportXlsx/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/supportXlsx/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/supportXlsx/poi-ooxml-schemas-3.17.jar"/>
+	<classpathentry kind="lib" path="/Users/liuzheng/eclipse-workspace/supportXlsx/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
