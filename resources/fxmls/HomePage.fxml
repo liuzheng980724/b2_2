@@ -5,27 +5,44 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="b2_2.HomePageController">
    <center>
       <BorderPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <center>
-            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="540.0" prefWidth="800.0" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="groupDetail" layoutX="69.0" layoutY="40.0" prefHeight="478.0" prefWidth="660.0" />
-                  <Label layoutX="-1.0" layoutY="578.0" prefHeight="25.0" prefWidth="800.0" text="© Copyright 2022 Group B2-2" />
+                  <ListView fx:id="groupDetail" layoutX="70.0" layoutY="84.0" maxHeight="490.0" prefHeight="490.0" prefWidth="660.0" />
+                  <Label fx:id="sysMessage" alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="38.0" maxHeight="490.0" prefHeight="46.0" prefWidth="660.0" text="Label" textAlignment="CENTER">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="70.0" layoutY="9.0" maxHeight="490.0" prefHeight="30.0" prefWidth="660.0" text="Automatic grouping software" textAlignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </center>
       </BorderPane>
    </center>
    <top>
-      <Pane prefHeight="64.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="40.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="importButton" layoutX="103.0" layoutY="19.0" mnemonicParsing="false" text="Import" />
-            <Button fx:id="exportButton" layoutX="374.0" layoutY="19.0" mnemonicParsing="false" onAction="#outputFileFunction" text="Export" />
-            <Button fx:id="settingsButton" layoutX="617.0" layoutY="19.0" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="importButton" layoutX="102.0" layoutY="7.0" mnemonicParsing="false" onAction="#importFileFunction" text="Import" />
+            <Button fx:id="exportButton" disable="true" layoutX="374.0" layoutY="7.0" mnemonicParsing="false" onAction="#outputFileFunction" text="Export" />
+            <Button fx:id="settingsButton" layoutX="616.0" layoutY="7.0" mnemonicParsing="false" text="Settings" />
          </children>
       </Pane>
    </top>
+   <bottom>
+      <Pane prefHeight="20.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="20.0" prefWidth="800.0" text="© Copyright 2022 Group B2-2" />
+         </children>
+      </Pane>
+   </bottom>
 </BorderPane>

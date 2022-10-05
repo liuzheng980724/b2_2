@@ -17,7 +17,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setResizable(false);
 			primaryStage.show();
-			primaryStage.setTitle("Welcome to B2-2 Group!");
+			primaryStage.setTitle("Automatic grouping software - by B2-2.");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

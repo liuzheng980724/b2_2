@@ -9,9 +9,12 @@ import java.util.List;
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
+import javafx.stage.DirectoryChooser;
+
 public class FileIO {
 	
-	String filePath;
+	private String filePath;
+	private String outputFile;
 	
 	public FileIO() {
 		
@@ -58,7 +61,13 @@ public class FileIO {
 	}
 	
 	public void outputCSV(List<String> dataPrepare) {
-		String outputFile = "./testFiles/test_output.csv";	//Test code
+		//outputFile = "./testFiles/test_output.csv";	//Test code
+
+		DirectoryChooser newDirectoryChooser=new DirectoryChooser();
+
+
+		File selectedFile = newDirectoryChooser.showDialog(null);
+		outputFile = selectedFile.getAbsolutePath() + "/default_out.csv";
 		boolean alreadyExists = new File(outputFile).exists();
 		
 		try {
@@ -87,5 +96,9 @@ public class FileIO {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public String returnPath() {
+		return outputFile;
 	}
 }

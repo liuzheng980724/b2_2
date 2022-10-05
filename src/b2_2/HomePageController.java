@@ -1,14 +1,16 @@
 package b2_2;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 public class HomePageController {
 
@@ -20,6 +22,8 @@ public class HomePageController {
 	private Button exportButton;
 	@FXML
 	private Button settingsButton;
+	@FXML
+	private Label sysMessage;
 	
 	List<String[]> studentList = new ArrayList<String[]>();
 	List<String[]> classList = new ArrayList<String[]>();
@@ -34,13 +38,12 @@ public class HomePageController {
 	
 	@FXML
 	public void initialize() {
-		caculateGroups();
-		allocateStudentInGroup();
+		sysMessage.setText("Welcome! Select button 'Import' to start.");
 		//outputFileFunction();	//Test
 	}
 	
 	public HomePageController() {
-		FileIO newFileIO = new FileIO();
+		/*FileIO newFileIO = new FileIO();
 		
 		//TEST
 		try {
@@ -56,7 +59,7 @@ public class HomePageController {
 			i++;
 		}
 		System.out.println(i);
-		totalStudent = i;
+		totalStudent = i;*/
 	}
 	
 	public void caculateGroups() {
@@ -121,17 +124,50 @@ public class HomePageController {
 				
 			}
 	        
-			
-			/*ObservableList<String> items = FXCollections.observableArrayList (
-	                 "Hot dog", "Hamburger", "French fries", 
-	                 "Carrot sticks", "Chicken salad");
-			groupDetail.setItems(items);*/
 		}
 		
+	}
+	
+	public void importFileFunction(ActionEvent event) {
+		FileChooser newfileChooser = new FileChooser();
+		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Allow file format: ", "*.csv", "*.xlsx");
+		newfileChooser.getExtensionFilters().add(extFilter);
+		File selectedFile = newfileChooser.showOpenDialog(null);
+		
+        if(selectedFile != null) {
+        	String filepath = selectedFile.getAbsolutePath();
+        	FileIO newFileIO = new FileIO();
+        	
+        	try {
+    			studentList = newFileIO.importCsv(filepath);
+    		} catch (Exception e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+        	
+        	reloadList();
+        	caculateGroups();
+    		allocateStudentInGroup();
+    		exportButton.setDisable(false);
+    		sysMessage.setText("Done! Check the list below.");
+        }
+        
 	}
 	
 	public void outputFileFunction(ActionEvent event) {
 		FileIO newFileIO = new FileIO();
 		newFileIO.outputCSV(dataPrepare);
+		PopUpWindows newPopUpWindows = new PopUpWindows();
+		newPopUpWindows.ShowErrorPopWindow("Done! File Path: " + newFileIO.returnPath());
+		sysMessage.setText("Done! File Path: " + newFileIO.returnPath());
+	}
+	
+	public void reloadList() {
+		int i = 0;
+		for(String[] students:studentList) {
+			i++;
+		}
+		totalStudent = i;
+		System.out.println(totalStudent);	//Test code.
 	}
 }
