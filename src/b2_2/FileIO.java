@@ -1,9 +1,13 @@
 package b2_2;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.csvreader.CsvReader;
+import com.csvreader.CsvWriter;
 
 public class FileIO {
 	
@@ -51,5 +55,26 @@ public class FileIO {
 		for (String[] strings : datas) {
 			System.out.println(strings[0]);
 		}
+	}
+	
+	public void outputCSV() {
+		String outputFile = "./testFiles/test_output.csv";	//Test code
+		boolean alreadyExists = new File(outputFile).exists();
+		
+		try {
+			CsvWriter csvOutput = new CsvWriter(new FileWriter(outputFile, true), ',');
+		
+			if (!alreadyExists)
+			{
+				csvOutput.write("id");
+				csvOutput.write("name");
+				csvOutput.write("group_id");
+				csvOutput.endRecord();
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 }

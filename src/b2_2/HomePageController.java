@@ -20,6 +20,7 @@ public class HomePageController {
 	int maxNumInGroup = 7; //Default Value MAX
 	int intMaxNumberGroups = 0;
 	int intMinNumberGroups = 0;
+	int maxGroupInClass = 5;
 	
 	@FXML
 	public void initialize() {
