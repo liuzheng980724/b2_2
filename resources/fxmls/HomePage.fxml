@@ -22,9 +22,9 @@
    <top>
       <Pane prefHeight="64.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="103.0" layoutY="19.0" mnemonicParsing="false" text="Import" />
-            <Button layoutX="374.0" layoutY="19.0" mnemonicParsing="false" text="Export" />
-            <Button layoutX="617.0" layoutY="19.0" mnemonicParsing="false" text="Settings" />
+            <Button fx:id="importButton" layoutX="103.0" layoutY="19.0" mnemonicParsing="false" text="Import" />
+            <Button fx:id="exportButton" layoutX="374.0" layoutY="19.0" mnemonicParsing="false" onAction="#outputFileFunction" text="Export" />
+            <Button fx:id="settingsButton" layoutX="617.0" layoutY="19.0" mnemonicParsing="false" text="Settings" />
          </children>
       </Pane>
    </top>

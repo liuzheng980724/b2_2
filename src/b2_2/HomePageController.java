@@ -5,13 +5,21 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 
 public class HomePageController {
 
 	@FXML
 	private ListView<String> groupDetail = new ListView<String>();
+	@FXML
+	private Button importButton;
+	@FXML
+	private Button exportButton;
+	@FXML
+	private Button settingsButton;
 	
 	List<String[]> studentList = new ArrayList<String[]>();
 	List<String[]> classList = new ArrayList<String[]>();
@@ -122,7 +130,7 @@ public class HomePageController {
 		
 	}
 	
-	public void outputFileFunction() {
+	public void outputFileFunction(ActionEvent event) {
 		FileIO newFileIO = new FileIO();
 		newFileIO.outputCSV(dataPrepare);
 	}
