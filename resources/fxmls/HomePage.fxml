@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="b2_2.HomePageController">
-	<!-- TODO Add Nodes -->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="b2_2.HomePageController">
+   <center>
+      <BorderPane prefHeight="600.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="groupDetail" layoutX="64.0" layoutY="27.0" prefHeight="423.0" prefWidth="591.0" />
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </center>
 </BorderPane>
-

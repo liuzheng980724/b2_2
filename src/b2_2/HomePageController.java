@@ -3,15 +3,29 @@ package b2_2;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+
 public class HomePageController {
 
+	@FXML
+	private ListView<String> groupDetail = new ListView<String>();
+	
 	List<String[]> studentList = new ArrayList<String[]>();
 	List<String[]> classList = new ArrayList<String[]>();
 	int totalStudent = 0;
-	int minNumInGroup = 5;
-	int maxNumInGroup = 7;
+	int minNumInGroup = 5; //Default Value MIN
+	int maxNumInGroup = 7; //Default Value MAX
 	int intMaxNumberGroups = 0;
 	int intMinNumberGroups = 0;
+	
+	@FXML
+	public void initialize() {
+		caculateGroups();
+		allocateStudentInGroup();
+	}
 	
 	public HomePageController() {
 		FileIO newFileIO = new FileIO();
@@ -26,12 +40,11 @@ public class HomePageController {
 		
 		int i = 0;
 		for(String[] students:studentList) {
-			System.out.println(students[1]);
+			System.out.println(students[1]);	//Test code.
 			i++;
 		}
 		System.out.println(i);
 		totalStudent = i;
-		caculateGroups();
 	}
 	
 	public void caculateGroups() {
@@ -60,8 +73,47 @@ public class HomePageController {
 			}
 		}
 		
-		System.out.println(intMaxNumberGroups);
-		System.out.println(intMinNumberGroups);
-		System.out.println(restStudents);
+		System.out.println(intMaxNumberGroups);	//Test Code.
+		System.out.println(intMinNumberGroups);	//Test Code.
+		System.out.println(restStudents);	//Test Code.
+	}
+	
+	public void allocateStudentInGroup() {
+		//List<String[]> temporyGroupsList = new ArrayList<String[]>();
+		List<String> dataPrepare = new ArrayList<String>();
+		int nextGroupInitialRowID = 0;
+		int totalGroupNum = 1;
+		
+		//MAX Number Groups
+		for (int i = 1; i <= intMaxNumberGroups; i++) {
+			groupDetail.getItems().add("Group: " + totalGroupNum);
+			totalGroupNum++;
+			for(int j = 1; j <= maxNumInGroup; j++) {
+				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0]);
+				System.out.println(studentList.get(nextGroupInitialRowID)[0]);
+				groupDetail.getItems().add(studentList.get(nextGroupInitialRowID)[1]); //TO FXML
+				nextGroupInitialRowID++;
+			}
+			//temporyGroupsList.add();
+		}
+		
+		//MIN Number Groups
+		for (int l = 1; l <= intMinNumberGroups; l++) {
+			groupDetail.getItems().add("Group: " + totalGroupNum);
+			totalGroupNum++;
+			for(int k = 1; k <= minNumInGroup; k++) {
+				dataPrepare.add(studentList.get(nextGroupInitialRowID)[0]);
+				System.out.println(studentList.get(nextGroupInitialRowID)[0]);
+				groupDetail.getItems().add(studentList.get(nextGroupInitialRowID)[1]); //TO FXML
+				nextGroupInitialRowID++;
+			}
+	        
+			
+			/*ObservableList<String> items = FXCollections.observableArrayList (
+	                 "Hot dog", "Hamburger", "French fries", 
+	                 "Carrot sticks", "Chicken salad");
+			groupDetail.setItems(items);*/
+		}
+		
 	}
 }
