@@ -178,7 +178,7 @@ public class HomePageController {
         	try {
     			
         		if(newFileIO.sheetPrepare(filepath)) {
-        			studentList = newFileIO.importCsv("./testFiles/temporaryFile.csv");
+        			studentList = newFileIO.importCsv("./temporaryFile.csv");
         		}
         		
     		} catch (Exception e) {

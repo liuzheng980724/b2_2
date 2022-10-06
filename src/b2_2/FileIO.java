@@ -122,7 +122,7 @@ public class FileIO {
                 }
                 data.append('\n');
                 try {
-					Files.write(Paths.get("./testFiles/temporaryFile.csv"),
+					Files.write(Paths.get("./temporaryFile.csv"),
 					        data.toString().getBytes("UTF-8"));
 				} catch (UnsupportedEncodingException e) {
 					// TODO Auto-generated catch block
