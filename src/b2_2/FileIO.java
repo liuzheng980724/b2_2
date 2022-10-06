@@ -34,6 +34,7 @@ public class FileIO {
 	
 	private String filePath;
 	private String outputFile;
+	private boolean validDataFlag = false;
 	
 	public FileIO() {
 		
@@ -44,10 +45,11 @@ public class FileIO {
 		List<String[]> dataList = new ArrayList<String[]>();
 		try {
 			reader = new CsvReader(filePath);
- 
+
 			//Get CSV head
 			reader.readHeaders();
-			
+			String[] headerFromFile = reader.getHeaders();
+			vaildData(headerFromFile);	//iDENTIFY HEADER
 			//read All
 			while (reader.readRecord()) {
 				//Add data in list.
@@ -174,6 +176,30 @@ public class FileIO {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void vaildData(String[] headerFromFile) {
+		int i = 0;
+		boolean otherHeader = false;
+		boolean firstHeader = false;
+		boolean secHeader = false;
+		for(String strings : headerFromFile) {
+			System.out.println(strings);
+			if(i == 0 & strings.equals("StudentID")) {
+				firstHeader = true;
+			} else if(i == 1 & strings.equals("StudentName")) {
+				secHeader = true;
+			} else {
+				otherHeader = true;
+			}
+			i++;
+		}
+		validDataFlag = firstHeader & secHeader & !otherHeader;
+		System.out.println("validDataFlag " + validDataFlag);	//Test code
+	}
+	
+	public boolean getValidDataFlag() {
+		return validDataFlag;
 	}
 	
 	public String returnPath() {

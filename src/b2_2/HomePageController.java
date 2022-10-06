@@ -146,11 +146,17 @@ public class HomePageController {
     			e.printStackTrace();
     		}
         	
-        	reloadList();
-        	caculateGroups();
-    		allocateStudentInGroup();
-    		exportButton.setDisable(false);
-    		sysMessage.setText("Done! Check the list below.");
+        	boolean validDataFlag = false;
+        	validDataFlag = newFileIO.getValidDataFlag();
+        	if(validDataFlag) {
+            	reloadList();
+            	caculateGroups();
+        		allocateStudentInGroup();
+        		exportButton.setDisable(false);
+        		sysMessage.setText("Done! Check the list below.");
+        	} else {
+            	sysMessage.setText("Error! Check data format.");
+        	}
         }
         
 	}
@@ -176,11 +182,17 @@ public class HomePageController {
     			e.printStackTrace();
     		}
         	
-        	reloadList();
-        	caculateGroups();
-    		allocateStudentInGroup();
-    		exportButton.setDisable(false);
-    		sysMessage.setText("Done! Check the list below.");
+        	boolean validDataFlag = false;
+        	validDataFlag = newFileIO.getValidDataFlag();
+        	if(validDataFlag) {
+            	reloadList();
+            	caculateGroups();
+        		allocateStudentInGroup();
+        		exportButton.setDisable(false);
+        		sysMessage.setText("Done! Check the list below.");
+        	} else {
+            	sysMessage.setText("Error! Check data format.");
+        	}
         }
         
 	}
