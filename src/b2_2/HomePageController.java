@@ -28,7 +28,7 @@ public class HomePageController {
 	private Label sysMessage;
 	
 	List<String[]> studentList = new ArrayList<String[]>();
-	List<String[]> classList = new ArrayList<String[]>();
+	//List<String[]> classList = new ArrayList<String[]>();
 	
 	List<String> dataPrepare = new ArrayList<String>();
 	int totalStudent = 0;
@@ -130,6 +130,8 @@ public class HomePageController {
 	}
 	
 	public void importFileFunction(ActionEvent event) {
+		reloadList();
+		
 		FileChooser newfileChooser = new FileChooser();
 		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Only CSV.", "*.csv");
 		newfileChooser.getExtensionFilters().add(extFilter);
@@ -149,7 +151,7 @@ public class HomePageController {
         	boolean validDataFlag = false;
         	validDataFlag = newFileIO.getValidDataFlag();
         	if(validDataFlag) {
-            	reloadList();
+        		calculateTotalStudent();
             	caculateGroups();
         		allocateStudentInGroup();
         		exportButton.setDisable(false);
@@ -162,6 +164,8 @@ public class HomePageController {
 	}
 	
 	public void importFileFunctionXlsx(ActionEvent event) {
+		reloadList();
+		
 		FileChooser newfileChooser = new FileChooser();
 		ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Only XLSX.", "*.xlsx");
 		newfileChooser.getExtensionFilters().add(extFilter);
@@ -185,7 +189,7 @@ public class HomePageController {
         	boolean validDataFlag = false;
         	validDataFlag = newFileIO.getValidDataFlag();
         	if(validDataFlag) {
-            	reloadList();
+        		calculateTotalStudent();
             	caculateGroups();
         		allocateStudentInGroup();
         		exportButton.setDisable(false);
@@ -206,6 +210,14 @@ public class HomePageController {
 	}
 	
 	public void reloadList() {
+		studentList.clear();	//DELET all list exists
+		dataPrepare.clear(); 	//DELET all list exists
+		groupDetail.getItems().clear();	//DELET all list exists
+		exportButton.setDisable(true);
+		sysMessage.setText("Welcome! Select button 'Import' to start.");
+	}
+	
+	public void calculateTotalStudent() {
 		int i = 0;
 		for(String[] students:studentList) {
 			i++;
