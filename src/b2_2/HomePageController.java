@@ -131,7 +131,6 @@ public class HomePageController {
 				System.out.println(studentList.get(nextGroupInitialRowID)[0]);
 				groupDetail.getItems().add(dataPrepare.get(nextGroupInitialRowID)); //TO FXML
 				nextGroupInitialRowID++;
-				
 			}
 	        
 		}
@@ -221,8 +220,36 @@ public class HomePageController {
 	}
 	
 	public void setMaxAndMinNum(ActionEvent event) {
+		int[] minAndMaxNum = new int[2];
+		
 		PopUpWindows newPopUpWindows = new PopUpWindows();
-		newPopUpWindows.changeMaxAndMinNum(minNumInGroup, maxNumInGroup);
+		minAndMaxNum = newPopUpWindows.changeMaxAndMinNum(minNumInGroup, maxNumInGroup);
+		
+		if(vaildMAXandMINnumber(minAndMaxNum)) {
+			minNumInGroup = minAndMaxNum[0];
+			maxNumInGroup = minAndMaxNum[1];
+			relocateStudents();
+    		sysMessage.setText("Done! Check the list below.");
+			newPopUpWindows.ShowErrorPopWindow("Done!");
+		};
+	}
+	
+	public boolean vaildMAXandMINnumber(int[] minAndMaxNum) {
+		boolean vaildFlag = false;
+		if(minAndMaxNum[0] < minAndMaxNum[1]) {
+			vaildFlag = true;
+		} else if(minAndMaxNum[1] <= minAndMaxNum[0]) {
+			PopUpWindows newPopUpWindows = new PopUpWindows();
+			newPopUpWindows.ShowErrorPopWindow("MAX Number must bigger the MIN Number.");
+		}
+		return vaildFlag;
+	}
+	
+	public void relocateStudents() {
+		dataPrepare.clear();	//DELET all list exists
+		groupDetail.getItems().clear();	//DELET all list exists
+    	caculateGroups();
+		allocateStudentInGroup();
 	}
 	
 	public void reloadList() {
