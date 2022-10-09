@@ -38,7 +38,7 @@ public class PopUpWindows {
         vBox.getChildren().addAll(error, empty,closeButton);
         
         vBox.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(vBox,300,150);
+        Scene scene = new Scene(vBox,500,150);
         stage.setScene(scene);
         stage.setTitle("Attention Please! ");
         stage.show();
@@ -72,17 +72,17 @@ public class PopUpWindows {
         stage.setResizable(false);
 	}
 	
-	public int[] changeMaxAndMinNum() {
+	public int[] changeMaxAndMinNum(int minNumInGroup, int maxNumInGroup) {
 	while(true) {
 		if(inputOkDone) {
 			return minAndMaxNum;
 		} else {
-			ShowAndChangeNum();
+			ShowAndChangeNum(minNumInGroup, maxNumInGroup);
 		}
 	}
 	}
 	
-	public void ShowAndChangeNum() {		
+	public void ShowAndChangeNum(int minNumInGroup, int maxNumInGroup) {		
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         
@@ -95,6 +95,10 @@ public class PopUpWindows {
         
         TextField minInput = new TextField();
         TextField maxInput = new TextField();
+        
+        minInput.setText(Integer.toString(minNumInGroup));	//Show previous MIN.
+        maxInput.setText(Integer.toString(maxNumInGroup));	//Show previous MAX.
+        
         UnaryOperator<Change> filter = change -> {	//Filter allow input numbers.
             String text = change.getText();
 

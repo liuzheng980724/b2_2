@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -24,6 +26,8 @@ public class HomePageController {
 	private Button exportButton;
 	@FXML
 	private Button settingsButton;
+	@FXML
+	private Label copyright;
 	@FXML
 	private Label sysMessage;
 	
@@ -42,8 +46,13 @@ public class HomePageController {
 	public void initialize() {
 		sysMessage.setText("Welcome! Select button 'Import' to start.");
 		//outputFileFunction();	//Test
+		
+		copyright.setOnMouseClicked(e -> {	//Show about me.
+			PopUpWindows newPopUpWindows = new PopUpWindows();
+			newPopUpWindows.ShowAboutMe();
+		});
 	}
-	
+    
 	public HomePageController() {
 		//FileIO newFileIO = new FileIO();
 		//TEST
@@ -155,6 +164,7 @@ public class HomePageController {
             	caculateGroups();
         		allocateStudentInGroup();
         		exportButton.setDisable(false);
+        		settingsButton.setDisable(false);
         		sysMessage.setText("Done! Check the list below.");
         	} else {
             	sysMessage.setText("Error! Check data format.");
@@ -193,6 +203,7 @@ public class HomePageController {
             	caculateGroups();
         		allocateStudentInGroup();
         		exportButton.setDisable(false);
+        		settingsButton.setDisable(false);
         		sysMessage.setText("Done! Check the list below.");
         	} else {
             	sysMessage.setText("Error! Check data format.");
@@ -209,11 +220,17 @@ public class HomePageController {
 		sysMessage.setText("Done! File Path: " + newFileIO.returnPath());
 	}
 	
+	public void setMaxAndMinNum(ActionEvent event) {
+		PopUpWindows newPopUpWindows = new PopUpWindows();
+		newPopUpWindows.changeMaxAndMinNum(minNumInGroup, maxNumInGroup);
+	}
+	
 	public void reloadList() {
 		studentList.clear();	//DELET all list exists
 		dataPrepare.clear(); 	//DELET all list exists
 		groupDetail.getItems().clear();	//DELET all list exists
 		exportButton.setDisable(true);
+		settingsButton.setDisable(true);
 		sysMessage.setText("Welcome! Select button 'Import' to start.");
 	}
 	
